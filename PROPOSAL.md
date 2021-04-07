@@ -12,3 +12,6 @@ I learned about and finished a pre-written implementation of sorting algorithms 
 
 ### Extra features:
 If I have enough time by the end of the project deadline, I want to implement a button so that I can visualize all 4 sorting algorithms in parallel. This is cool because we can see how fast each algorithm sorts a vector of unordered elements.
+
+### Video Link:
+https://www.youtube.com/watch?v=ZZuD6iUe3Pc
