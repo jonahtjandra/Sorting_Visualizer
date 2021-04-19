@@ -12,7 +12,7 @@ public:
     /**
      * constructor for the MergeSort class
      */
-    explicit QuickSort(std::vector<int> arr);
+    explicit QuickSort(std::vector<int>& arr);
 
     std::vector<int> GetArray();
 
@@ -21,16 +21,16 @@ private:
     /**
      * Helper method to find the pivot using median of three
      */
-    void MedianOfThree(std::vector<int>& arr);
+    void MedianOfThree(std::vector<int>& arr, int start_index, int end_index);
     /**
      * Actual sorting algorithm
      */
-    void Sort(std::vector<int> arr, int start_index, int end_index);
+    void Sort(std::vector<int>& arr, int start_index, int end_index);
 
     /**
      * to partition
      */
-    void Partition(std::vector<int> arr, int start_index, int end_index);
+    int Partition(std::vector<int>& arr, int start_index, int end_index);
     /**
      * private helper to swap to integers
      * @param a first integer
