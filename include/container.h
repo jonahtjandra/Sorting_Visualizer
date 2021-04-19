@@ -10,31 +10,28 @@ using glm::vec2;
 namespace sortsimulator {
 
 /**
- * The container in which all of the gas particles are contained. This class
- * stores all of the particles and updates them on each frame of the simulation.
+ * The container in which all of the sorting algorithm graphs are stored
  */
     class Container {
     public:
         /**
-         * TODO: Add more parameters to this constructor, and add documentation.
+         * Constructor for the container of the bar graph.
          */
         Container();
 
         /**
-         * Displays the container walls and the current positions of the particles.
+         * Displays the bar graph.
          */
         void Display() const;
 
         /**
-         * Updates the positions and velocities of all particles (based on the rules
-         * described in the assignment documentation).
+         * Updates the height and positions of bars. Also updates the current pointer of the algorithm
          */
         void AdvanceOneFrame();
 
     private:
         /**
-         * This variable is just for the purposes of demonstrating how to make a shape move
-         * across a screen. Please remove it once you start working on your code.
+         * dummy
          */
         int dummy_variable_ = 0;
     };

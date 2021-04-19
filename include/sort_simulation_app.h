@@ -11,7 +11,7 @@
 namespace sortsimulator {
 
 /**
- * An app for visualizing the behavior of an ideal gas.
+ * An app for visualizing the behavior sorting algorithm.
  */
     class SortSimulationApp : public ci::app::App {
     public:
