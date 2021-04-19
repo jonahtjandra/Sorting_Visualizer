@@ -3,3 +3,11 @@
 //
 
 #include "mergesort.h"
+
+MergeSort::MergeSort(std::vector<int> bars) {
+
+}
+
+void MergeSort::Sort() {
+
+}

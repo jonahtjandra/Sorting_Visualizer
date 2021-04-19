@@ -54,8 +54,8 @@ list(APPEND SOURCE_FILES    src/container.cc
                             src/mergesort.cc
                             src/quicksort.cc)
 
-list(APPEND TEST_FILES      tests/test_container.cc
-                            tests/test_main.cc)
+list(APPEND TEST_FILES      tests/test_main.cc
+                            tests/test_container.cc)
 
 ci_make_app(
         APP_NAME        final-project
