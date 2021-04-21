@@ -22,6 +22,7 @@ private:
      * Helper method to find the pivot using median of three
      */
     void MedianOfThree(std::vector<int>& arr, int start_index, int end_index);
+
     /**
      * Actual sorting algorithm
      */
@@ -31,18 +32,15 @@ private:
      * to partition
      */
     int Partition(std::vector<int>& arr, int start_index, int end_index);
+
     /**
      * private helper to swap to integers
      * @param a first integer
      * @param b second integer
      */
     void Swap(int* a, int* b);
-    //index of the first looping pointer
-    //int first_pointer_;
-    //index of the second looping pointer
-    //int second_pointer_;
     std::vector<int> array_;
-    //std::vector<std::vector<std::vector<int>>> animation_;
+    std::vector<std::vector<int>> animation_;
 };
 
 

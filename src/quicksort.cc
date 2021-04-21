@@ -8,26 +8,26 @@
 
 QuickSort::QuickSort(std::vector<int>& arr) {
     //median of three method to find the first pivot value
+    MedianOfThree(arr,0,arr.size()-1);
     array_ = arr;
     Sort(array_, 0, arr.size() - 1);
 }
 
 void QuickSort::MedianOfThree(std::vector<int>& arr, int start_index, int end_index) {
-    std::cout << "median";
     int middle = floor(arr.size()/2);
-    int last = arr.size()-1;
     if (arr[0] > arr[middle]) {
         Swap(&arr[0], &arr[middle]);
-    } else if (arr[middle] > arr[last]) {
-        Swap(&arr[middle], &arr[last]);
+    } else if (arr[middle] > arr[end_index]) {
+        Swap(&arr[middle], &arr[end_index]);
         if (arr[0] > arr[middle]) {
             Swap(&arr[0], &arr[middle]);
         }
     }
+    //Puts the median value in the last order, ready for partition algorithm
+    Swap(&arr[middle], &arr[end_index]);
 }
 
 int QuickSort::Partition(std::vector<int>& arr, int start_index, int end_index) {
-    //MedianOfThree(arr,start_index,end_index);
     int pivot = arr[end_index];
     //swap pivot with the last element
     //Swap(&arr[end_index],&arr[floor(arr.size()/2)]);
@@ -53,9 +53,7 @@ void QuickSort::Swap(int *a, int *b) {
 
 void QuickSort::Sort(std::vector<int>& arr, int start_index, int end_index) {
     if (start_index < end_index) {
-
         int partitioning_index = Partition(arr, start_index, end_index);
-
         //partition index is already at the correct index, so sort array after and before partition
         Sort(arr, start_index, partitioning_index - 1);
         Sort(arr, partitioning_index + 1, end_index);

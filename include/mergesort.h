@@ -16,15 +16,16 @@ public:
     /**
      * sort the unsorted bars
      */
-    void Sort();
+    void Sort(std::vector<int>& arr);
+
+    /**
+     * Merge two sorted list
+     */
+    void Merge(std::vector<int>& arr_a, std::vector<int>& arr_b);
 
 private:
-    //index of the first looping pointer
-    //int first_pointer_;
-    //index of the second looping pointer
-    //int second_pointer_;
-    //std::vector<int> bars_;
-    //std::vector<std::vector<std::vector<int>>> animation_tape_;
+    std::vector<int> bars_;
+    std::vector<std::vector<int>> animation_;
 
 };
 

@@ -8,6 +8,10 @@ MergeSort::MergeSort(std::vector<int> bars) {
 
 }
 
-void MergeSort::Sort() {
+void MergeSort::Sort(std::vector<int>& arr) {
+
+}
+
+void MergeSort::Merge(std::vector<int>& arr_a, std::vector<int>& arr_b) {
 
 }
