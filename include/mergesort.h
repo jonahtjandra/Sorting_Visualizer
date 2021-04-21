@@ -11,20 +11,22 @@ public:
     /**
      * constructor for the MergeSort class
      */
-    explicit MergeSort(std::vector<int> bars);
+    explicit MergeSort(std::vector<int> arr);
 
     /**
      * sort the unsorted bars
      */
-    void Sort(std::vector<int>& arr);
-
+    std::vector<int> Sort(std::vector<int> arr);
     /**
-     * Merge two sorted list
+     * Helper method to merge two sorted list
      */
-    void Merge(std::vector<int>& arr_a, std::vector<int>& arr_b);
+    std::vector<int> Merge(std::vector<int> arr_a, std::vector<int> arr_b);
+
+    std::vector<int> GetArray();
 
 private:
-    std::vector<int> bars_;
+
+    std::vector<int> array_;
     std::vector<std::vector<int>> animation_;
 
 };

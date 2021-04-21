@@ -38,10 +38,14 @@ int QuickSort::Partition(std::vector<int>& arr, int start_index, int end_index) 
         if (arr[i] < pivot) {
             left_wall++;
             Swap(&arr[i], &arr[left_wall]);
+            //swap occur, push current array
+            animation_.push_back(array_);
         }
     }
     //swap pivot and left wall + 1 because we want pivot between two smaller and larger array of numbers
     Swap(&arr[left_wall+1], &arr[end_index]);
+    //swap occur, push current array
+    animation_.push_back(array_);
     return left_wall + 1;
 }
 
