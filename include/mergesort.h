@@ -16,16 +16,15 @@ public:
     /**
      * sort the unsorted bars
      */
-    std::vector<int> Sort(std::vector<int> arr);
+    void Sort(std::vector<int>& arr, std::vector<int>& aux_arr, int start_index, int end_index);
     /**
      * Helper method to merge two sorted list
      */
-    std::vector<int> Merge(std::vector<int> arr_a, std::vector<int> arr_b);
+    void Merge(std::vector<int>& arr, const std::vector<int>& aux_arr, int start_index, int middle_index, int end_index);
 
     std::vector<int> GetArray();
 
 private:
-
     std::vector<int> array_;
     std::vector<std::vector<int>> animation_;
 

@@ -4,60 +4,53 @@
 
 #include <iostream>
 #include "mergesort.h"
+#include <cmath>
 
 MergeSort::MergeSort(std::vector<int> arr) {
     array_ = arr;
-    array_ = Sort(array_);
+    Sort(array_, arr, 0, arr.size() - 1);
 }
 
-std::vector<int> MergeSort::Sort(std::vector<int> arr) {
-    if (arr.size() <= 1) {
-        return arr;
+void MergeSort::Sort(std::vector<int>& arr, std::vector<int>& aux_arr, int start_index, int end_index) {
+    if (end_index == start_index) {
+        return;
     }
     //splitting array into two
-    int mid = arr.size()/2;
-    std::vector<int> arr_a;
-    std::vector<int> arr_b;
-    for (int i = 0; i < mid; i++) {
-        arr_a.push_back(arr[i]);
-    }
-    for (int i = mid; i < arr.size(); i++) {
-        arr_b.push_back(arr[i]);
-    }
-
-    arr_a = Sort(arr_a);
-    arr_b = Sort(arr_b);
-    return Merge(arr_a,arr_b);
+    int mid = floor((start_index + end_index)/2);
+    Sort(aux_arr,arr, start_index, mid);
+    Sort(aux_arr,arr, mid+1, end_index);
+    Merge(arr,aux_arr, start_index, mid, end_index);
 }
 
-std::vector<int> MergeSort::Merge(std::vector<int> arr_a, std::vector<int> arr_b) {
-    std::vector<int> merged_arr;
+void MergeSort::Merge(std::vector<int>& arr, const std::vector<int>& aux_arr, int start_index, int middle_index, int end_index) {
+    //pointer in the original array
+    int i = start_index;
+    //pointer in the auxiliary array
+    int j = start_index;
+    //start of second array
+    int k = middle_index + 1;
     //when both arrays are not empty
-    while(arr_a.size() != 0 && arr_b.size() != 0) {
+    while(j <= middle_index && k <= end_index) {
         //checking which array head is smaller
-        if (arr_a[0] > arr_b[0]) {
-            merged_arr.push_back(arr_b[0]);
-            arr_b.erase(arr_b.cbegin());
+        if (aux_arr[j] <= aux_arr[k]) {
+            arr[i++] = aux_arr[j++];
         } else {
-            merged_arr.push_back(arr_a[0]);
-            arr_a.erase(arr_a.cbegin());
+            arr[i++] = aux_arr[k++];
         }
     }
     //At this point one of the array is empty
-    //emptying out arr_a to merged array
-    while(arr_a.size() != 0) {
-        merged_arr.push_back(arr_a[0]);
-        arr_a.erase(arr_a.cbegin());
+    //emptying out arr1 to merged array
+    while(j <= middle_index) {
+        arr[i++] = aux_arr[j++];
     }
-    //emptying out arr_b to merged array
-    while(arr_b.size() != 0) {
-        merged_arr.push_back(arr_b[0]);
-        arr_b.erase(arr_b.cbegin());
+    //emptying out arr2 to merged array
+    while(k <= end_index) {
+        arr[i++] = aux_arr[k++];
     }
-    return merged_arr;
 }
 
 std::vector<int> MergeSort::GetArray() {
     return array_;
 }
+
 

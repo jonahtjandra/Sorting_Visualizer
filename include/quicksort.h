@@ -40,6 +40,8 @@ private:
      */
     void Swap(int* a, int* b);
     std::vector<int> array_;
+    //optimize to be two arrays with comparisons and swaps
+    //so we don't need to loop through the entire array each step of the animation
     std::vector<std::vector<int>> animation_;
 };
 
