@@ -15,9 +15,19 @@ namespace sortsimulator {
     class Container {
     public:
         /**
-         * Constructor for the container of the bar graph.
+         * Default Constructor for the container of the bar graph.
          */
         Container();
+
+        /**
+         * Constructor for the container of the bar graph.
+         */
+        Container(std::vector<int[2]>);
+
+        /**
+         * Set sort animation
+         */
+        void ParseQuickSort();
 
         /**
          * Setter for array
@@ -44,6 +54,10 @@ namespace sortsimulator {
          * Array of numbers
          */
         std::vector<int> array_;
+        //the array of size 2 is for the two index values of the one we want to swap or color
+        std::vector<int[2]> animations_;
+        int animation_count_;
+        bool sorted_;
     };
 
 }  // namespace sortsimulator

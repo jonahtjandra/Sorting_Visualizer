@@ -21,7 +21,6 @@ namespace sortsimulator {
             array.push_back(a);
         }
         container_.SetArray(array);
-        container_.Display();
         std::cout << "pressed";
     }
 
@@ -55,7 +54,8 @@ namespace sortsimulator {
                 std::cout<< "Bubble Sort";
             }
             if ((float)kLeftMargin * 10 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 10 + kLeftMargin) {
-                std::cout<< "Quick Sort";
+                //quick sort
+                container_.ParseQuickSort();
             }
             if ((float)kLeftMargin * 12.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 12.5 + kLeftMargin) {
                 std::cout<< "Merge Sort";

@@ -6,15 +6,17 @@
 #define FINAL_PROJECT_QUICKSORT_H
 #include <vector>
 
-
+namespace sortsimulator{
 class QuickSort {
 public:
     /**
      * constructor for the MergeSort class
      */
-    explicit QuickSort(std::vector<int>& arr);
+    QuickSort(std::vector<int>& arr);
 
     std::vector<int> GetArray();
+
+    std::vector<int[2]> GetAnimations();
 
 
 private:
@@ -42,8 +44,9 @@ private:
     std::vector<int> array_;
     //optimize to be two arrays with comparisons and swaps
     //so we don't need to loop through the entire array each step of the animation
-    std::vector<std::vector<int>> animation_;
+    std::vector<int[2]> animation_;
 };
 
+} // namespace sortsimulator
 
 #endif //FINAL_PROJECT_QUICKSORT_H

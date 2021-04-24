@@ -6,6 +6,8 @@
 #include <iostream>
 #include <math.h>
 
+namespace sortsimulator{
+
 QuickSort::QuickSort(std::vector<int>& arr) {
     //median of three method to find the first pivot value
     MedianOfThree(arr,0,arr.size()-1);
@@ -44,17 +46,23 @@ int QuickSort::Partition(std::vector<int>& arr, int start_index, int end_index) 
     //the right sub-array will start at the end - 1 index because the last index is the pivot
     int left_wall = start_index - 1;
     for (int i = start_index; i <= end_index - 1; i++) {
+        //animation for comparing values
+        animation_.push_back({i,pivot});
+        //color switch twice
+        animation_.push_back({i,pivot});
         if (arr[i] < pivot) {
             left_wall++;
+            //animation for swapping values
+            animation_.push_back({i,left_wall});
             Swap(&arr[i], &arr[left_wall]);
-            //swap occur, push current array
-            animation_.push_back(array_);
+        } else {
+            //to notify that no swapping occurred
+            animation_.push_back({0,0});
         }
     }
     //swap pivot and left wall + 1 because we want pivot between two smaller and larger array of numbers
+    animation_.push_back({left_wall,end_index});
     Swap(&arr[left_wall+1], &arr[end_index]);
-    //swap occur, push current array
-    animation_.push_back(array_);
     return left_wall + 1;
 }
 
@@ -67,3 +75,9 @@ void QuickSort::Swap(int *a, int *b) {
 std::vector<int> QuickSort::GetArray() {
     return array_;
 }
+
+std::vector<int[2]> QuickSort::GetAnimations() {
+    return animation_;
+}
+
+} // namespace sortsimulator

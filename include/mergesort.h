@@ -6,6 +6,8 @@
 #define FINAL_PROJECT_MERGESORT_H
 #include <vector>
 
+namespace sortsimulator {
+
 class MergeSort {
 public:
     /**
@@ -32,3 +34,4 @@ private:
 
 
 #endif //FINAL_PROJECT_MERGESORT_H
+} // namespace sortsimulator

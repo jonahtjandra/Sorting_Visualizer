@@ -3,15 +3,25 @@
 //
 
 #include "container.h"
+#include "quicksort.h"
 
 namespace sortsimulator {
 
     using glm::vec2;
 
     Container::Container() {
-
+        sorted_ = false;
     }
 
+    Container::Container(std::vector<int[2]> animation) {
+        animations_ = animation;
+    }
+
+    void Container::ParseQuickSort() {
+        if (!array_.empty()) {
+            QuickSort(array_);
+        }
+    }
 
     void Container::Display() const {
         ci::gl::color(ci::Color("white"));
@@ -27,6 +37,7 @@ namespace sortsimulator {
     }
 
     void Container::AdvanceOneFrame() {
+        Display();
     }
 
     void Container::SetArray(std::vector<int>& arr) {
