@@ -12,16 +12,26 @@ namespace sortsimulator {
 
     }
 
+
     void Container::Display() const {
-        // This function has a lot of magic numbers; be sure to design your code in a way that avoids this.
-        ci::gl::color(ci::Color("orange"));
-        ci::gl::drawSolidCircle(vec2(dummy_variable_, 200), 10);
         ci::gl::color(ci::Color("white"));
-        ci::gl::drawStrokedRect(ci::Rectf(vec2(100, 100), vec2(600, 400)));
+        ci::gl::drawStrokedRect(ci::Rectf(vec2(kMarginLeft, kMargin),
+                                          vec2(kMarginLeft+kWidth, kMargin+kHeight)));
+        float bar_width = (float)(kWidth - (array_.size() + 1)*kSpacing)/array_.size();
+        for (int i = 0; i < array_.size(); i++) {
+            ci::gl::color(ci::Color("white"));
+            ci::gl::drawSolidRect(ci::Rectf(vec2(kMarginLeft + kSpacing + i*(bar_width+kSpacing),kMargin + kHeight),
+                                            vec2(kMarginLeft + kSpacing + i*(bar_width+kSpacing) + bar_width,
+                                                 (kHeight+kMargin) - (kHeight/array_.size()*array_[i]))));
+        }
     }
 
     void Container::AdvanceOneFrame() {
-        ++dummy_variable_;
+
+    }
+
+    void Container::SetArray(std::vector<int> arr) {
+        array_ = arr;
     }
 
 }  // namespace sortsimulator

@@ -20,6 +20,11 @@ namespace sortsimulator {
         Container();
 
         /**
+         * Setter for array
+         */
+        void SetArray(std::vector<int> arr);
+
+        /**
          * Displays the bar graph.
          */
         void Display() const;
@@ -30,10 +35,15 @@ namespace sortsimulator {
         void AdvanceOneFrame();
 
     private:
+        const int kHeight = 400;
+        const int kWidth = 600;
+        const size_t kMarginLeft = 50;
+        const size_t kMargin = 150;
+        const size_t kSpacing = 2;
         /**
-         * dummy
+         * Array of numbers
          */
-        int dummy_variable_ = 0;
+        std::vector<int> array_;
     };
 
 }  // namespace sortsimulator
