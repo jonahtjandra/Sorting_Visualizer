@@ -39,14 +39,14 @@ namespace sortsimulator {
             ci::gl::drawSolidRect(ci::Rectf(vec2(kMarginLeft + kSpacing + i*(bar_width+kSpacing),
                                                  kMarginBottom + kHeight),
                                             vec2(kMarginLeft + kSpacing + i*(bar_width+kSpacing) + bar_width,
-                                                 (kHeight + kMarginBottom) - ((kHeight - kSpacing)
+                                                 (kHeight + kMarginBottom) - (kHeight
                                                  / array_.size() * array_[i]))));
         }
     }
 
     void Container::AdvanceOneFrame() {
         if (sorted_) {
-            //color change
+            //comparisons color
             if (std::get<0>(animations_[count_]) == 1) {
                 color_array_[std::get<1>(animations_[count_])] = ci::Color("red");
                 color_array_[std::get<2>(animations_[count_])] = ci::Color("blue");
@@ -67,14 +67,29 @@ namespace sortsimulator {
             //sorting has finished
             if (count_ >= animations_.size()) {
                 sorted_ = false;
+                finished_ = true;
+                count_ = 0;
+            }
+        }
+        if (finished_) {
+            color_array_[count_] = ci::Color("red");
+            count_++;
+            if (count_ > array_.size()) {
+                finished_ = false;
+                Reset();
             }
         }
     }
-
     void Container::SetArray(std::vector<int>& arr) {
         array_ = arr;
         for (int i = 0; i < arr.size(); i++) {
             color_array_.emplace_back("white");
+        }
+    }
+
+    void Container::Reset() {
+        for (ci::Color& color : color_array_) {
+            color = ci::Color("white");
         }
     }
 

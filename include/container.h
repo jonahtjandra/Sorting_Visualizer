@@ -44,6 +44,8 @@ namespace sortsimulator {
          */
         void AdvanceOneFrame();
 
+        void Reset();
+
     private:
         const int kHeight = 400;
         const int kWidth = 600;
@@ -59,6 +61,7 @@ namespace sortsimulator {
         std::vector<std::tuple<int,int,int>> animations_;
         int count_ = 0;
         bool sorted_ = false;
+        bool finished_ = false;
     };
 
 }  // namespace sortsimulator

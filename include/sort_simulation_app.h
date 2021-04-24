@@ -31,6 +31,7 @@ namespace sortsimulator {
         Container container_;
         //true if array simulation is currently being sorted
         bool sorted_ = false;
+
     };
 
 }  // namespace sortsimulator
