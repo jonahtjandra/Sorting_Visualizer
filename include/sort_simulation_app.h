@@ -29,6 +29,8 @@ namespace sortsimulator {
     private:
         void GenerateNewArray();
         Container container_;
+        //true if array simulation is currently being sorted
+        bool sorted_ = false;
     };
 
 }  // namespace sortsimulator

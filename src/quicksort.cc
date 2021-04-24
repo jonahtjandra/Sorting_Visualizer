@@ -10,12 +10,12 @@ namespace sortsimulator{
 
 QuickSort::QuickSort(std::vector<int>& arr) {
     //median of three method to find the first pivot value
-    MedianOfThree(arr,0,arr.size()-1);
+    /*MedianOfThree(arr,0,arr.size()-1);*/
     array_ = arr;
     Sort(array_, 0, arr.size() - 1);
 }
 
-void QuickSort::MedianOfThree(std::vector<int>& arr, int start_index, int end_index) {
+/*void QuickSort::MedianOfThree(std::vector<int>& arr, int start_index, int end_index) {
     int middle = floor(arr.size()/2);
     if (arr[0] > arr[middle]) {
         Swap(&arr[0], &arr[middle]);
@@ -27,7 +27,7 @@ void QuickSort::MedianOfThree(std::vector<int>& arr, int start_index, int end_in
     }
     //Puts the median value in the last order, ready for partition algorithm
     Swap(&arr[middle], &arr[end_index]);
-}
+}*/
 
 void QuickSort::Sort(std::vector<int>& arr, int start_index, int end_index) {
     if (start_index < end_index) {
@@ -47,21 +47,21 @@ int QuickSort::Partition(std::vector<int>& arr, int start_index, int end_index) 
     int left_wall = start_index - 1;
     for (int i = start_index; i <= end_index - 1; i++) {
         //animation for comparing values
-        animation_.push_back({i,pivot});
-        //color switch twice
-        animation_.push_back({i,pivot});
+        animation_.emplace_back(std::make_tuple(1,i, pivot));
+        //color switch back to white
+        animation_.emplace_back(std::make_tuple(0,i, pivot));
         if (arr[i] < pivot) {
             left_wall++;
             //animation for swapping values
-            animation_.push_back({i,left_wall});
+            animation_.emplace_back(std::make_tuple(2,i, left_wall));
             Swap(&arr[i], &arr[left_wall]);
         } else {
-            //to notify that no swapping occurred
-            animation_.push_back({0,0});
+            //to notify that no swapping occurred, we still need to push to signal
+            animation_.emplace_back(std::make_tuple(2,0,0));
         }
     }
     //swap pivot and left wall + 1 because we want pivot between two smaller and larger array of numbers
-    animation_.push_back({left_wall,end_index});
+    animation_.emplace_back(std::make_tuple(2,left_wall+1,end_index));
     Swap(&arr[left_wall+1], &arr[end_index]);
     return left_wall + 1;
 }
@@ -76,7 +76,7 @@ std::vector<int> QuickSort::GetArray() {
     return array_;
 }
 
-std::vector<int[2]> QuickSort::GetAnimations() {
+std::vector<std::tuple<int,int, int>> QuickSort::GetAnimations() {
     return animation_;
 }
 

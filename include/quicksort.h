@@ -16,7 +16,7 @@ public:
 
     std::vector<int> GetArray();
 
-    std::vector<int[2]> GetAnimations();
+    std::vector<std::tuple<int,int,int>> GetAnimations();
 
 
 private:
@@ -44,7 +44,8 @@ private:
     std::vector<int> array_;
     //optimize to be two arrays with comparisons and swaps
     //so we don't need to loop through the entire array each step of the animation
-    std::vector<int[2]> animation_;
+    //first is for indicating whether a swap(2) or color(1) or uncolor(0). Second and third are for indexes being compared.
+    std::vector<std::tuple<int, int, int>> animation_;
 };
 
 } // namespace sortsimulator

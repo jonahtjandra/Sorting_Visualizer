@@ -22,7 +22,7 @@ namespace sortsimulator {
         /**
          * Constructor for the container of the bar graph.
          */
-        Container(std::vector<int[2]>);
+        Container(std::vector<std::tuple<int,int,int>> animation);
 
         /**
          * Set sort animation
@@ -54,10 +54,11 @@ namespace sortsimulator {
          * Array of numbers
          */
         std::vector<int> array_;
+        std::vector<ci::Color> color_array_;
         //the array of size 2 is for the two index values of the one we want to swap or color
-        std::vector<int[2]> animations_;
-        int animation_count_;
-        bool sorted_;
+        std::vector<std::tuple<int,int,int>> animations_;
+        int count_ = 0;
+        bool sorted_ = false;
     };
 
 }  // namespace sortsimulator

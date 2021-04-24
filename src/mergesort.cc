@@ -5,7 +5,7 @@
 #include <iostream>
 #include "mergesort.h"
 #include <cmath>
-
+namespace sortsimulator {
 MergeSort::MergeSort(std::vector<int> arr) {
     array_ = arr;
     Sort(array_, arr, 0, arr.size() - 1);
@@ -52,5 +52,7 @@ void MergeSort::Merge(std::vector<int>& arr, const std::vector<int>& aux_arr, in
 std::vector<int> MergeSort::GetArray() {
     return array_;
 }
+
+} //namespace sortsimulator
 
 
