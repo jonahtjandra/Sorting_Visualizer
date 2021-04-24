@@ -19,12 +19,15 @@ namespace sortsimulator {
 
         void draw() override;
         void update() override;
+        void mouseDown(ci::app::MouseEvent event) override;
 
-        // provided that you can see the entire UI on your screen.
         const int kWindowSize = 700;
-        const int kMargin = 100;
+        const int kMargin = 150;
+        const int kTitleTopMargin = 50;
+        const int kLeftMargin = 50;
 
     private:
+        void GenerateNewArray();
         Container container_;
     };
 

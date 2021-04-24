@@ -22,7 +22,7 @@ namespace sortsimulator {
         /**
          * Setter for array
          */
-        void SetArray(std::vector<int> arr);
+        void SetArray(std::vector<int>& arr);
 
         /**
          * Displays the bar graph.
@@ -38,7 +38,7 @@ namespace sortsimulator {
         const int kHeight = 400;
         const int kWidth = 600;
         const size_t kMarginLeft = 50;
-        const size_t kMargin = 150;
+        const size_t kMarginBottom = 150;
         const size_t kSpacing = 2;
         /**
          * Array of numbers
