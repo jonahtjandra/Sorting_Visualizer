@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <iostream>
 
+//TODO:Find a better design pattern and flow of program, this is so convoluted right now.
 namespace sortsimulator {
 
     using glm::vec2;
