@@ -14,7 +14,7 @@ public:
      */
     QuickSort();
 
-    void MergeSort(std::vector<int>& arr);
+    void SortArray(std::vector<int> arr);
 
     std::vector<int> GetArray();
 

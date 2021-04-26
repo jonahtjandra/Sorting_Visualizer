@@ -24,12 +24,8 @@ namespace sortsimulator {
     void Container::ParseQuickSort() {
         sorted_ = true;
         sortsimulator::QuickSort quicksort = sortsimulator::QuickSort();
-        quicksort.MergeSort(array_);
+        quicksort.SortArray(array_);
         animations_ = quicksort.GetAnimations();
-        for (int i : quicksort.GetArray()) {
-            std::cout << i << std::endl;
-        }
-        std::cout << animations_.size();
     }
 
     void Container::Display() const {
@@ -85,7 +81,8 @@ namespace sortsimulator {
             count_++;
         }
     }
-    void Container::SetArray(std::vector<int>& arr) {
+    void Container::SetArray(const std::vector<int>& arr) {
+        array_.clear();
         array_ = arr;
         for (int i = 0; i < arr.size(); i++) {
             color_array_.emplace_back("white");

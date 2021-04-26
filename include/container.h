@@ -32,7 +32,7 @@ namespace sortsimulator {
         /**
          * Setter for array
          */
-        void SetArray(std::vector<int>& arr);
+        void SetArray(const std::vector<int>& arr);
 
         /**
          * Displays the bar graph.
