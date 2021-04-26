@@ -8,12 +8,15 @@
 
 namespace sortsimulator{
 
-QuickSort::QuickSort(std::vector<int>& arr) {
+QuickSort::QuickSort() = default;
+
+void QuickSort::MergeSort(std::vector<int> &arr) {
     //median of three method to find the first pivot value
     /*MedianOfThree(arr,0,arr.size()-1);*/
     array_ = arr;
     Sort(array_, 0, arr.size() - 1);
 }
+
 
 /*void QuickSort::MedianOfThree(std::vector<int>& arr, int start_index, int end_index) {
     int middle = floor(arr.size()/2);

@@ -12,7 +12,9 @@ public:
     /**
      * constructor for the MergeSort class
      */
-    QuickSort(std::vector<int>& arr);
+    QuickSort();
+
+    void MergeSort(std::vector<int>& arr);
 
     std::vector<int> GetArray();
 

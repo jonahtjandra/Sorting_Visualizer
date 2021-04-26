@@ -15,8 +15,8 @@ namespace sortsimulator {
         std::vector<int> array;
         std::random_device rd;
         std::mt19937 mt(rd());
-        std::uniform_int_distribution<int> distribution(1,50);
-        for(int i = 0; i < 50; i++) {
+        std::uniform_int_distribution<int> distribution(1,35);
+        for(int i = 0; i < 35; i++) {
             int a = distribution(mt);
             array.push_back(a);
         }

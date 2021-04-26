@@ -23,11 +23,13 @@ namespace sortsimulator {
 
     void Container::ParseQuickSort() {
         sorted_ = true;
-        sortsimulator::QuickSort quicksort = sortsimulator::QuickSort(array_);
+        sortsimulator::QuickSort quicksort = sortsimulator::QuickSort();
+        quicksort.MergeSort(array_);
         animations_ = quicksort.GetAnimations();
         for (int i : quicksort.GetArray()) {
             std::cout << i << std::endl;
         }
+        std::cout << animations_.size();
     }
 
     void Container::Display() const {
@@ -72,13 +74,15 @@ namespace sortsimulator {
                 count_ = 0;
             }
         }
+        //ending sequence
         if (finished_) {
             color_array_[count_] = ci::Color("red");
-            count_++;
             if (count_ > array_.size()) {
+                color_array_[count_] = ci::Color("red");
                 finished_ = false;
                 Reset();
             }
+            count_++;
         }
     }
     void Container::SetArray(std::vector<int>& arr) {
@@ -92,6 +96,7 @@ namespace sortsimulator {
         for (ci::Color& color : color_array_) {
             color = ci::Color("white");
         }
+        animations_.clear();
     }
 
 }  // namespace sortsimulator
