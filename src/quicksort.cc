@@ -68,6 +68,9 @@ int QuickSort::Partition(std::vector<int>& arr, int start_index, int end_index
     }
     //uncolor pivot
     animation.emplace_back(std::make_tuple(0,pivot, pivot));
+    //color swap
+    animation.emplace_back(std::make_tuple(1,left_wall+1,end_index));
+    animation.emplace_back(std::make_tuple(0,left_wall+1,end_index));
     //swap pivot and left wall + 1 because we want pivot between two smaller and larger array of numbers
     animation.emplace_back(std::make_tuple(2,left_wall+1,end_index));
     Swap(&arr[left_wall+1], &arr[end_index]);

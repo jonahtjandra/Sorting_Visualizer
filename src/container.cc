@@ -9,6 +9,7 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <unistd.h>
 
 namespace sortsimulator {
 
@@ -74,6 +75,7 @@ namespace sortsimulator {
                     array_[std::get<2>(animations_[count_])] = tmp;
                 }
             }
+            usleep(kDelay);
             Display();
             count_++;
             //sorting has finished
@@ -113,6 +115,16 @@ namespace sortsimulator {
         animations_.clear();
         array_.clear();
         color_array_.clear();
+    }
+
+    void Container::SpeedUp() {
+        if (kDelay >= 30000) {
+            kDelay = kDelay - 30000;
+        }
+    }
+
+    void Container::SpeedDown() {
+        kDelay = 150000;
     }
 
 

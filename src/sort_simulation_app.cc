@@ -39,7 +39,6 @@ namespace sortsimulator {
     }
 
     void SortSimulationApp::update() {
-        time
         container_.AdvanceOneFrame();
     }
 
@@ -69,6 +68,15 @@ namespace sortsimulator {
                     container_.ParseMergeSort();
                 }
             }
+        }
+    }
+
+    void SortSimulationApp::keyDown(ci::app::KeyEvent event) {
+        if (event.getChar() == 's') {
+            container_.SpeedDown();
+        }
+        if (event.getChar() == 'w') {
+           container_.SpeedUp();
         }
     }
 

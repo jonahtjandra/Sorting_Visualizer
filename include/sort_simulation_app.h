@@ -20,14 +20,13 @@ namespace sortsimulator {
         void draw() override;
         void update() override;
         void mouseDown(ci::app::MouseEvent event) override;
+        void keyDown(ci::app::KeyEvent event) override;
 
+    private:
         const int kWindowSize = 700;
-        const int kMargin = 150;
         const int kTitleTopMargin = 50;
         const int kLeftMargin = 50;
         const int kNumberOfBars = 40;
-
-    private:
         void GenerateNewArray();
         Container container_;
         //true if array simulation is currently being sorted
