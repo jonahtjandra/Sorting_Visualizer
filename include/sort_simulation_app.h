@@ -25,6 +25,7 @@ namespace sortsimulator {
         const int kMargin = 150;
         const int kTitleTopMargin = 50;
         const int kLeftMargin = 50;
+        const int kNumberOfBars = 40;
 
     private:
         void GenerateNewArray();

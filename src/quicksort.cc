@@ -14,7 +14,7 @@ std::vector<std::tuple<int,int,int>> QuickSort::SortArray(std::vector<int> arr) 
     //median of three method to find the first pivot value
     /*MedianOfThree(arr,0,arr.size()-1);*/
     std::vector<std::tuple<int, int, int>> animation;
-    Sort(arr, 0, (int)arr.size() - 1, animation);
+    Sort(arr, 0, arr.size() - 1, animation);
     return animation;
 }
 

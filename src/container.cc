@@ -22,10 +22,9 @@ namespace sortsimulator {
         sorted_ = true;
         sort_method = 2;
         animations_.clear();
-        animations_ = QuickSort::SortArray(array_);
-        for (int i : QuickSort::GetSortedArray(array_)) {
-            std::cout << i << std::endl;
-        }
+        std::vector<int> arr = array_;
+        animations_ = QuickSort::SortArray(arr);
+
     }
 
     void Container::ParseMergeSort() {
@@ -87,12 +86,13 @@ namespace sortsimulator {
         //ending sequence
         if (finished_) {
             color_array_[count_] = ci::Color("red");
+            count_++;
             if (count_ > array_.size()) {
                 color_array_[count_] = ci::Color("red");
                 finished_ = false;
                 ResetGraph();
+                count_ = 0;
             }
-            count_++;
         }
     }
     void Container::SetArray(const std::vector<int>& arr) {

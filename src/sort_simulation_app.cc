@@ -15,13 +15,13 @@ namespace sortsimulator {
         std::vector<int> array;
         std::random_device rd;
         std::mt19937 mt(rd());
-        std::uniform_int_distribution<int> distribution(1,35);
-        for(int i = 0; i < 35; i++) {
+        std::uniform_int_distribution<int> distribution(1,kNumberOfBars);
+        for(int i = 0; i < kNumberOfBars; i++) {
             int a = distribution(mt);
             array.push_back(a);
+            std::cout<<a<<std::endl;
         }
         container_.SetArray(array);
-        std::cout << "pressed";
     }
 
     void SortSimulationApp::draw() {
@@ -39,6 +39,7 @@ namespace sortsimulator {
     }
 
     void SortSimulationApp::update() {
+        time
         container_.AdvanceOneFrame();
     }
 
@@ -48,6 +49,7 @@ namespace sortsimulator {
         if (!sorted_) {
             if ((float)(kWindowSize - kTitleTopMargin) - 10 < clickPos.y && clickPos.y < (float)kWindowSize - kTitleTopMargin + 10) {
                 if ((float)kLeftMargin * 2 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 2 + kLeftMargin) {
+                    std::cout<< "Generate New Array";
                     GenerateNewArray();
                 }
                 if ((float)kLeftMargin * 5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 5 + kLeftMargin) {
@@ -58,10 +60,12 @@ namespace sortsimulator {
                 }
                 if ((float)kLeftMargin * 10 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 10 + kLeftMargin) {
                     //quick sort
+                    std::cout<< "Quick Sort";
                     container_.ParseQuickSort();
                 }
                 if ((float)kLeftMargin * 12.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 12.5 + kLeftMargin) {
                     //merge sort
+                    std::cout<< "Merge Sort";
                     container_.ParseMergeSort();
                 }
             }
