@@ -4,11 +4,12 @@
 
 #include "container.h"
 #include "quicksort.h"
+#include "mergesort.h"
+#include <utility>
 #include <vector>
 #include <algorithm>
 #include <iostream>
 
-//TODO:Find a better design pattern and flow of program, this is so convoluted right now.
 namespace sortsimulator {
 
     using glm::vec2;
@@ -17,15 +18,21 @@ namespace sortsimulator {
         sorted_ = false;
     }
 
-    Container::Container(std::vector<std::tuple<int,int,int>> animation) {
-        animations_ = animation;
-    }
-
     void Container::ParseQuickSort() {
         sorted_ = true;
-        sortsimulator::QuickSort quicksort = sortsimulator::QuickSort();
-        quicksort.SortArray(array_);
-        animations_ = quicksort.GetAnimations();
+        sort_method = 2;
+        animations_.clear();
+        animations_ = QuickSort::SortArray(array_);
+        for (int i : QuickSort::GetSortedArray(array_)) {
+            std::cout << i << std::endl;
+        }
+    }
+
+    void Container::ParseMergeSort() {
+        sorted_ = true;
+        sort_method = 3;
+        animations_.clear();
+        animations_ = MergeSort::SortArray(array_);
     }
 
     void Container::Display() const {
@@ -35,9 +42,9 @@ namespace sortsimulator {
         float bar_width = (float)(kWidth - (array_.size() + 1)*kSpacing)/array_.size();
         for (int i = 0; i < array_.size(); i++) {
             ci::gl::color(color_array_[i]);
-            ci::gl::drawSolidRect(ci::Rectf(vec2(kMarginLeft + kSpacing + i*(bar_width+kSpacing),
+            ci::gl::drawSolidRect(ci::Rectf(vec2((float)kMarginLeft + kSpacing + (float)i*(bar_width+kSpacing),
                                                  kMarginBottom + kHeight),
-                                            vec2(kMarginLeft + kSpacing + i*(bar_width+kSpacing) + bar_width,
+                                            vec2((float)kMarginLeft + kSpacing + (float)i*(bar_width+kSpacing) + bar_width,
                                                  (kHeight + kMarginBottom) - (kHeight
                                                  / array_.size() * array_[i]))));
         }
@@ -57,9 +64,16 @@ namespace sortsimulator {
             }
             //swap
             if (std::get<0>(animations_[count_]) == 2) {
-                int tmp = array_[std::get<1>(animations_[count_])];
-                array_[std::get<1>(animations_[count_])] = array_[std::get<2>(animations_[count_])];
-                array_[std::get<2>(animations_[count_])] = tmp;
+                //for merge sort
+                if (sort_method == 3) {
+                    array_[std::get<1>(animations_[count_])] = std::get<2>(animations_[count_]);
+                }
+                //for quick sort
+                if (sort_method == 2) {
+                    int tmp =  array_[std::get<1>(animations_[count_])];
+                    array_[std::get<1>(animations_[count_])] =  array_[std::get<2>(animations_[count_])];
+                    array_[std::get<2>(animations_[count_])] = tmp;
+                }
             }
             Display();
             count_++;
@@ -76,24 +90,30 @@ namespace sortsimulator {
             if (count_ > array_.size()) {
                 color_array_[count_] = ci::Color("red");
                 finished_ = false;
-                Reset();
+                ResetGraph();
             }
             count_++;
         }
     }
     void Container::SetArray(const std::vector<int>& arr) {
-        array_.clear();
+        Reset();
         array_ = arr;
-        for (int i = 0; i < arr.size(); i++) {
+        for (int i = 0; i < array_.size(); i++) {
             color_array_.emplace_back("white");
         }
     }
 
-    void Container::Reset() {
+    void Container::ResetGraph() {
         for (ci::Color& color : color_array_) {
             color = ci::Color("white");
         }
-        animations_.clear();
     }
+
+    void Container::Reset() {
+        animations_.clear();
+        array_.clear();
+        color_array_.clear();
+    }
+
 
 }  // namespace sortsimulator

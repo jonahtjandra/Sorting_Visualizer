@@ -10,11 +10,12 @@ namespace sortsimulator{
 
 QuickSort::QuickSort() = default;
 
-void QuickSort::SortArray(std::vector<int> arr) {
+std::vector<std::tuple<int,int,int>> QuickSort::SortArray(std::vector<int> arr) {
     //median of three method to find the first pivot value
     /*MedianOfThree(arr,0,arr.size()-1);*/
-    array_ = arr;
-    Sort(array_, 0, arr.size() - 1);
+    std::vector<std::tuple<int, int, int>> animation;
+    Sort(arr, 0, (int)arr.size() - 1, animation);
+    return animation;
 }
 
 
@@ -32,44 +33,43 @@ void QuickSort::SortArray(std::vector<int> arr) {
     Swap(&arr[middle], &arr[end_index]);
 }*/
 
-void QuickSort::Sort(std::vector<int>& arr, int start_index, int end_index) {
+void QuickSort::Sort(std::vector<int>& arr, int start_index, int end_index
+                     , std::vector<std::tuple<int,int,int>>& animation) {
     if (start_index < end_index) {
-        int partitioning_index = Partition(arr, start_index, end_index);
+        int partitioning_index = Partition(arr, start_index, end_index, animation);
         //partition index is already at the correct index, so sort array after and before partition
-        Sort(arr, start_index, partitioning_index - 1);
-        Sort(arr, partitioning_index + 1, end_index);
+        Sort(arr, start_index, partitioning_index - 1, animation);
+        Sort(arr, partitioning_index + 1, end_index, animation);
     }
 }
 
-int QuickSort::Partition(std::vector<int>& arr, int start_index, int end_index) {
+int QuickSort::Partition(std::vector<int>& arr, int start_index, int end_index
+                         , std::vector<std::tuple<int, int, int>>& animation) {
     int pivot = arr[end_index];
     //swap pivot with the last element
     //Swap(&arr[end_index],&arr[floor(arr.size()/2)]);
     //keeping in track of the right side sub-array of the original index taken from the pivot
     //the right sub-array will start at the end - 1 index because the last index is the pivot
-    int left_wall = start_index - 1;
+    int left_wall = (int)start_index - 1;
     for (int i = start_index; i <= end_index - 1; i++) {
         //animation for comparing values
-        animation_.emplace_back(std::make_tuple(1,i, pivot));
+        animation.emplace_back(std::make_tuple(1,i, pivot));
         //color switch back to white
-        animation_.emplace_back(std::make_tuple(0,i, i));
+        animation.emplace_back(std::make_tuple(0,i, i));
         if (arr[i] < pivot) {
             left_wall++;
             //color swap
-            animation_.emplace_back(std::make_tuple(1,i, left_wall));
-            animation_.emplace_back(std::make_tuple(0,i, left_wall));
+            animation.emplace_back(std::make_tuple(1,i, left_wall));
+            animation.emplace_back(std::make_tuple(0,i, left_wall));
             //animation for swapping values
-            animation_.emplace_back(std::make_tuple(2,i, left_wall));
+            animation.emplace_back(std::make_tuple(2,i, left_wall));
             Swap(&arr[i], &arr[left_wall]);
-        } else {
-            //to notify that no swapping occurred, we still need to push to signal
-            animation_.emplace_back(std::make_tuple(2,0,0));
         }
     }
     //uncolor pivot
-    animation_.emplace_back(std::make_tuple(0,pivot, pivot));
+    animation.emplace_back(std::make_tuple(0,pivot, pivot));
     //swap pivot and left wall + 1 because we want pivot between two smaller and larger array of numbers
-    animation_.emplace_back(std::make_tuple(2,left_wall+1,end_index));
+    animation.emplace_back(std::make_tuple(2,left_wall+1,end_index));
     Swap(&arr[left_wall+1], &arr[end_index]);
     return left_wall + 1;
 }
@@ -80,12 +80,10 @@ void QuickSort::Swap(int *a, int *b) {
     *b = tmp;
 }
 
-std::vector<int> QuickSort::GetArray() {
-    return array_;
-}
-
-std::vector<std::tuple<int,int, int>> QuickSort::GetAnimations() {
-    return animation_;
+std::vector<int> QuickSort::GetSortedArray(std::vector<int> arr) {
+    std::vector<std::tuple<int, int, int>> animation;
+    Sort(arr, 0, (int)arr.size() - 1, animation);
+    return arr;
 }
 
 } // namespace sortsimulator

@@ -14,40 +14,35 @@ public:
      */
     QuickSort();
 
-    void SortArray(std::vector<int> arr);
+    static std::vector<std::tuple<int,int,int>> SortArray(std::vector<int> arr);
 
-    std::vector<int> GetArray();
-
-    std::vector<std::tuple<int,int,int>> GetAnimations();
+    static std::vector<int> GetSortedArray(std::vector<int> arr);
 
 
 private:
     /**
      * Helper method to find the pivot using median of three
      */
-    void MedianOfThree(std::vector<int>& arr, int start_index, int end_index);
+    void MedianOfThree(std::vector<int>& arr, size_t start_index, size_t end_index);
 
     /**
      * Actual sorting algorithm
      */
-    void Sort(std::vector<int>& arr, int start_index, int end_index);
+    //first is for indicating whether a swap(2) or color(1) or uncolor(0). Second and third are for indexes being compared.
+    static void Sort(std::vector<int>& arr, int start_index, int end_index
+                                                     , std::vector<std::tuple<int,int,int>>& animation);
 
     /**
      * to partition
      */
-    int Partition(std::vector<int>& arr, int start_index, int end_index);
+    static int Partition(std::vector<int>& arr, int start_index, int end_index, std::vector<std::tuple<int,int,int>>& animation);
 
     /**
      * private helper to swap to integers
      * @param a first integer
      * @param b second integer
      */
-    void Swap(int* a, int* b);
-    std::vector<int> array_;
-    //optimize to be two arrays with comparisons and swaps
-    //so we don't need to loop through the entire array each step of the animation
-    //first is for indicating whether a swap(2) or color(1) or uncolor(0). Second and third are for indexes being compared.
-    std::vector<std::tuple<int, int, int>> animation_;
+    static void Swap(int* a, int* b);
 };
 
 } // namespace sortsimulator

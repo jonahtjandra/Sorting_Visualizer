@@ -20,14 +20,14 @@ namespace sortsimulator {
         Container();
 
         /**
-         * Constructor for the container of the bar graph.
-         */
-        Container(std::vector<std::tuple<int,int,int>> animation);
-
-        /**
-         * Set sort animation
+         * Do quicksort animation
          */
         void ParseQuickSort();
+
+        /**
+         * Do mergesort animation
+         */
+        void ParseMergeSort();
 
         /**
          * Setter for array
@@ -44,14 +44,16 @@ namespace sortsimulator {
          */
         void AdvanceOneFrame();
 
+        void ResetGraph();
+
         void Reset();
 
     private:
         const int kHeight = 400;
         const int kWidth = 600;
-        const size_t kMarginLeft = 50;
-        const size_t kMarginBottom = 150;
-        const size_t kSpacing = 2;
+        const int kMarginLeft = 50;
+        const int kMarginBottom = 150;
+        const int kSpacing = 2;
         /**
          * Array of numbers
          */
@@ -62,6 +64,8 @@ namespace sortsimulator {
         int count_ = 0;
         bool sorted_ = false;
         bool finished_ = false;
+        //0=bubble sort, 1=selection sort, 2=quicksort, 3=mergesort
+        int sort_method;
     };
 
 }  // namespace sortsimulator

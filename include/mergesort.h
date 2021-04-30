@@ -15,21 +15,22 @@ public:
      */
     explicit MergeSort(std::vector<int> arr);
 
+    static std::vector<std::tuple<int,int,int>> SortArray (std::vector<int> arr);
+
+    static std::vector<int> GetSortedArray(std::vector<int> arr);
+
+private:
     /**
-     * sort the unsorted bars
-     */
-    void Sort(std::vector<int>& arr, std::vector<int>& aux_arr, int start_index, int end_index);
+    * sort the unsorted bars
+    */
+    static void Sort(std::vector<int>& arr, std::vector<int>& aux_arr, int start_index, int end_index
+            , std::vector<std::tuple<int,int,int>>& animation);
     /**
      * Helper method to merge two sorted list
      */
-    void Merge(std::vector<int>& arr, const std::vector<int>& aux_arr, int start_index, int middle_index, int end_index);
-
-    std::vector<int> GetArray();
-
-private:
+    static void Merge(std::vector<int>& arr, const std::vector<int>& aux_arr, int start_index, int middle_index, int end_index
+            , std::vector<std::tuple<int,int,int>>& animation);
     std::vector<int> array_;
-    std::vector<std::vector<int>> animation_;
-
 };
 
 

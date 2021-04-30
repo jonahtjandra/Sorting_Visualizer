@@ -61,7 +61,8 @@ namespace sortsimulator {
                     container_.ParseQuickSort();
                 }
                 if ((float)kLeftMargin * 12.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 12.5 + kLeftMargin) {
-                    std::cout<< "Merge Sort";
+                    //merge sort
+                    container_.ParseMergeSort();
                 }
             }
         }
