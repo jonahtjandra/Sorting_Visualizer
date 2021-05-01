@@ -13,8 +13,8 @@ BubbleSort::BubbleSort() {
 
 std::vector<std::tuple<int,int,int>> BubbleSort::SortArray(std::vector<int> arr) {
     std::vector<std::tuple<int,int,int>> animation;
-    for (int i = 0; i < arr.size()-1; i++) {
-        for (int j = 0; j < arr.size()-1-i; j++) {
+    for (int i = 0; i < arr.size(); i++) {
+        for (int j = 0; j < arr.size()-i; j++) {
             //animation for comparing values
             animation.emplace_back(std::make_tuple(1,j, j+1));
             //color switch back to white

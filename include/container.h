@@ -30,6 +30,16 @@ namespace sortsimulator {
         void ParseMergeSort();
 
         /**
+         * Do bubblesort animation
+         */
+        void ParseBubbleSort();
+
+        /**
+         * Do selectionsort animation
+         */
+        void ParseSelectionSort();
+
+        /**
          * Setter for array
          */
         void SetArray(const std::vector<int>& arr);

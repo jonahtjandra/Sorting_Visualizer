@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <iostream>
 #include <unistd.h>
+#include <bubblesort.h>
+#include <selectionsort.h>
 
 namespace sortsimulator {
 
@@ -33,6 +35,23 @@ namespace sortsimulator {
         sort_method = 3;
         animations_.clear();
         animations_ = MergeSort::SortArray(array_);
+    }
+
+    void Container::ParseBubbleSort() {
+        sorted_ = true;
+        sort_method = 0;
+        animations_.clear();
+        animations_ = BubbleSort::SortArray(array_);
+    }
+
+    void Container::ParseSelectionSort() {
+        sorted_ = true;
+        sort_method = 1;
+        animations_.clear();
+        animations_ = SelectionSort::SortArray(array_);
+        for (int i : SelectionSort::GetSortedArray(array_)) {
+            std::cout << i << std::endl;
+        }
     }
 
     void Container::Display() const {
@@ -68,8 +87,8 @@ namespace sortsimulator {
                 if (sort_method == 3) {
                     array_[std::get<1>(animations_[count_])] = std::get<2>(animations_[count_]);
                 }
-                //for quick sort
-                if (sort_method == 2) {
+                //for quick sort, bubble sort, and selection sort
+                if (sort_method == 2 || sort_method == 1 || sort_method == 0) {
                     int tmp =  array_[std::get<1>(animations_[count_])];
                     array_[std::get<1>(animations_[count_])] =  array_[std::get<2>(animations_[count_])];
                     array_[std::get<2>(animations_[count_])] = tmp;

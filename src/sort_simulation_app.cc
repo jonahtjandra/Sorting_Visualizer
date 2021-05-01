@@ -53,9 +53,11 @@ namespace sortsimulator {
                 }
                 if ((float)kLeftMargin * 5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 5 + kLeftMargin) {
                     std::cout<< "Selection Sort";
+                    container_.ParseSelectionSort();
                 }
                 if ((float)kLeftMargin * 7.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 7.5 + kLeftMargin) {
                     std::cout<< "Bubble Sort";
+                    container_.ParseBubbleSort();
                 }
                 if ((float)kLeftMargin * 10 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 10 + kLeftMargin) {
                     //quick sort
