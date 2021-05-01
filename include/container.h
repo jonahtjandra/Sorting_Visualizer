@@ -70,7 +70,7 @@ namespace sortsimulator {
         bool finished_ = false;
         //0=bubble sort, 1=selection sort, 2=quicksort, 3=mergesort
         int sort_method;
-        unsigned int kDelay = 60000;
+        unsigned int kDelay = 0;
     };
 
 }  // namespace sortsimulator

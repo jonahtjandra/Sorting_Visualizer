@@ -52,7 +52,9 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 list(APPEND SOURCE_FILES    src/container.cc
                             src/sort_simulation_app.cc
                             src/mergesort.cc
-                            src/quicksort.cc)
+                            src/quicksort.cc
+                            src/bubblesort.cc
+                            src/selectionsort.cc)
 
 list(APPEND TEST_FILES      tests/test_main.cc
                             tests/test_container.cc)
