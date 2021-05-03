@@ -60,7 +60,7 @@ namespace sortsimulator {
     }
 
     void Container::Display() const {
-        ci::gl::drawStringCentered(title_,vec2(((width_ - margin_left_)/2)+margin_left_, margin_bottom_)
+        ci::gl::drawStringCentered(title_,vec2((width_/2)+margin_left_, margin_bottom_ - spacing_*5)
                                    ,ci::Color("white"));
         ci::gl::color(ci::Color("white"));
         ci::gl::drawStrokedRect(ci::Rectf(vec2(margin_left_, margin_bottom_),
