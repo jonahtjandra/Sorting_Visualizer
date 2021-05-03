@@ -30,10 +30,11 @@ namespace sortsimulator {
         if (!simulate_all_) {
             if (!sorted_) {
                 ci::gl::drawStringCentered("Generate New Array",vec2(kLeftMargin * 2, kWindowSize - kTitleTopMargin),ci::Color("white"));
-                ci::gl::drawStringCentered("Selection Sort",vec2(kLeftMargin * 5, kWindowSize - kTitleTopMargin),ci::Color("white"));
-                ci::gl::drawStringCentered("Bubble Sort",vec2(kLeftMargin * 7.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
-                ci::gl::drawStringCentered("Quick Sort",vec2(kLeftMargin * 10, kWindowSize - kTitleTopMargin),ci::Color("white"));
-                ci::gl::drawStringCentered("Merge Sort",vec2(kLeftMargin * 12.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
+                ci::gl::drawStringCentered("Selection Sort",vec2(kLeftMargin * 4.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
+                ci::gl::drawStringCentered("Bubble Sort",vec2(kLeftMargin * 6.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
+                ci::gl::drawStringCentered("Quick Sort",vec2(kLeftMargin * 8.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
+                ci::gl::drawStringCentered("Merge Sort",vec2(kLeftMargin * 10.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
+                ci::gl::drawStringCentered("Simulate All", vec2(kLeftMargin * 12.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
             }
             container_.Display();
         } else {
@@ -75,23 +76,29 @@ namespace sortsimulator {
                     std::cout<< "Generate New Array";
                     container_.SetArray(GenerateNewArray());
                 }
-                if ((float)kLeftMargin * 5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 5 + kLeftMargin) {
+                if ((float)kLeftMargin * 4.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 4.5 + kLeftMargin) {
                     std::cout<< "Selection Sort";
                     container_.ParseSelectionSort();
                 }
-                if ((float)kLeftMargin * 7.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 7.5 + kLeftMargin) {
+                if ((float)kLeftMargin * 6.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 6.5 + kLeftMargin) {
                     std::cout<< "Bubble Sort";
                     container_.ParseBubbleSort();
                 }
-                if ((float)kLeftMargin * 10 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 10 + kLeftMargin) {
+                if ((float)kLeftMargin * 8.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 8.5 + kLeftMargin) {
                     //quick sort
                     std::cout<< "Quick Sort";
                     container_.ParseQuickSort();
                 }
-                if ((float)kLeftMargin * 12.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 12.5 + kLeftMargin) {
+                if ((float)kLeftMargin * 10.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 10.5 + kLeftMargin) {
                     //merge sort
                     std::cout<< "Merge Sort";
                     container_.ParseMergeSort();
+                }
+                if ((float)kLeftMargin * 12.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 12.5 + kLeftMargin) {
+                    //simulate simultaneously
+                    std::cout<< "Simulating all";
+                    simulate_all_ = true;
+                    RunAll();
                 }
             }
         }
@@ -120,7 +127,7 @@ namespace sortsimulator {
             }
             if (std::get<1>(container) == 1) {
                 std::get<0>(container).ParseQuickSort();
-                std::get<0>(container).SetTitle("Parse Sort");
+                std::get<0>(container).SetTitle("Quick Sort");
             }
             if (std::get<1>(container) == 2) {
                 std::get<0>(container).ParseBubbleSort();
