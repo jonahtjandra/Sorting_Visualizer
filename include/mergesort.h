@@ -13,7 +13,7 @@ public:
     /**
      * constructor for the MergeSort class
      */
-    explicit MergeSort(std::vector<int> arr);
+    explicit MergeSort();
 
     /**
      * Entry point for sorting the array

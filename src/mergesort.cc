@@ -6,8 +6,7 @@
 #include "mergesort.h"
 #include <cmath>
 namespace sortsimulator {
-MergeSort::MergeSort(std::vector<int> arr) {
-    array_ = arr;
+MergeSort::MergeSort() {
 }
 
 std::vector<std::tuple<int, int, int>> MergeSort::SortArray(std::vector<int> arr) {
