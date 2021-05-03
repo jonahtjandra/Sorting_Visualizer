@@ -13,6 +13,25 @@ namespace sortsimulator {
 
     std::vector<std::tuple<int,int,int>> SelectionSort::SortArray(std::vector<int> arr) {
         std::vector<std::tuple<int,int,int>> animation;
+        std::vector<int> array = arr;
+        Sort(arr, animation);
+        return animation;
+
+    }
+
+    void SelectionSort::Swap(int* a, int* b) {
+        int tmp = *a;
+        *a = *b;
+        *b = tmp;
+    }
+
+    std::vector<int> SelectionSort::GetSortedArray(std::vector<int> arr) {
+        std::vector<std::tuple<int,int,int>> animation;
+        Sort(arr, animation);
+        return arr;
+    }
+
+    void SelectionSort::Sort(std::vector<int>& arr, std::vector<std::tuple<int,int,int>>& animation) {
         for (int i = 0; i < arr.size()-1; i++) {
             int min = i;
             for (int j = i+1; j < arr.size(); j++) {
@@ -25,24 +44,12 @@ namespace sortsimulator {
                 }
             }
             //color swap
-            animation.emplace_back(std::make_tuple(1,i, min));
-            animation.emplace_back(std::make_tuple(0,i, min));
+            animation.emplace_back(std::make_tuple(3,i, min));
             //animation for swapping values
             animation.emplace_back(std::make_tuple(2,i, min));
+            //uncolor
+            animation.emplace_back(std::make_tuple(0,i, min));
             Swap(&arr[i],&arr[min]);
         }
-        return animation;
-
-    }
-
-    void SelectionSort::Swap(int* a, int* b) {
-        int tmp = *a;
-        *a = *b;
-        *b = tmp;
-    }
-
-    std::vector<int> SelectionSort::GetSortedArray(std::vector<int> arr) {
-        SortArray(arr);
-        return arr;
     }
 }

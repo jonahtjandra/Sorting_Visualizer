@@ -20,10 +20,6 @@ public:
 
 
 private:
-    /**
-     * Helper method to find the pivot using median of three
-     */
-    void MedianOfThree(std::vector<int>& arr, size_t start_index, size_t end_index);
 
     /**
      * Actual sorting algorithm

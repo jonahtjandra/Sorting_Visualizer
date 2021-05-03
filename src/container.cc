@@ -17,8 +17,10 @@ namespace sortsimulator {
 
     using glm::vec2;
 
-    Container::Container() {
+    Container::Container(int height, int width, int left_margin, int bottom_margin) {
         sorted_ = false;
+        kHeight = height;
+
     }
 
     void Container::ParseQuickSort() {
@@ -57,15 +59,15 @@ namespace sortsimulator {
     void Container::Display() const {
         ci::gl::color(ci::Color("white"));
         ci::gl::drawStrokedRect(ci::Rectf(vec2(kMarginLeft, kMarginBottom),
-                                          vec2(kMarginLeft+kWidth, kMarginBottom + kHeight)));
+                                          vec2(kMarginLeft + kWidth, kMarginBottom + kHeight)));
         float bar_width = (float)(kWidth - (array_.size() + 1)*kSpacing)/array_.size();
         for (int i = 0; i < array_.size(); i++) {
             ci::gl::color(color_array_[i]);
-            ci::gl::drawSolidRect(ci::Rectf(vec2((float)kMarginLeft + kSpacing + (float)i*(bar_width+kSpacing),
+            ci::gl::drawSolidRect(ci::Rectf(vec2((float)kMarginLeft + kSpacing + (float)i * (bar_width + kSpacing),
                                                  kMarginBottom + kHeight),
-                                            vec2((float)kMarginLeft + kSpacing + (float)i*(bar_width+kSpacing) + bar_width,
+                                            vec2((float)kMarginLeft + kSpacing + (float)i * (bar_width + kSpacing) + bar_width,
                                                  (kHeight + kMarginBottom) - (kHeight
-                                                 / array_.size() * array_[i]))));
+                                                                              / array_.size() * array_[i]))));
         }
     }
 
@@ -93,6 +95,11 @@ namespace sortsimulator {
                     array_[std::get<1>(animations_[count_])] =  array_[std::get<2>(animations_[count_])];
                     array_[std::get<2>(animations_[count_])] = tmp;
                 }
+            }
+            //color indicating swaps
+            if (std::get<0>(animations_[count_]) == 3) {
+                color_array_[std::get<1>(animations_[count_])] = ci::Color("green");
+                color_array_[std::get<2>(animations_[count_])] = ci::Color("green");
             }
             usleep(kDelay);
             Display();

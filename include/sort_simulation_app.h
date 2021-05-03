@@ -26,7 +26,7 @@ namespace sortsimulator {
         const int kWindowSize = 700;
         const int kTitleTopMargin = 50;
         const int kLeftMargin = 50;
-        const int kNumberOfBars = 25;
+        const int kNumberOfBars = 40;
         void GenerateNewArray();
         Container container_;
         //true if array simulation is currently being sorted

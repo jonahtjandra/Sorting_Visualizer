@@ -5,6 +5,8 @@
 
 #include <quicksort.h>
 #include <mergesort.h>
+#include <bubblesort.h>
+#include <selectionsort.h>
 #include <vector>
 
 TEST_CASE("QuickSort test") {
@@ -19,5 +21,19 @@ TEST_CASE("MergeSort test") {
         std::vector<int> arr = {8,3,1,7,9,5,4,2};
         std::vector<int> sorted_arr = {1,2,3,4,5,7,8,9};
         REQUIRE(sortsimulator::MergeSort::GetSortedArray(arr) == sorted_arr);
+    }
+}
+TEST_CASE("BubbleSort test") {
+    SECTION("sort") {
+        std::vector<int> arr = {8,3,1,7,9,5,4,2};
+        std::vector<int> sorted_arr = {1,2,3,4,5,7,8,9};
+        REQUIRE(sortsimulator::BubbleSort::GetSortedArray(arr) == sorted_arr);
+    }
+}
+TEST_CASE("SelectionSort test") {
+    SECTION("sort") {
+        std::vector<int> arr = {8,3,1,7,9,5,4,2};
+        std::vector<int> sorted_arr = {1,2,3,4,5,7,8,9};
+        REQUIRE(sortsimulator::SelectionSort::GetSortedArray(arr) == sorted_arr);
     }
 }

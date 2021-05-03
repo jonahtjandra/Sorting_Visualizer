@@ -12,6 +12,8 @@ class BubbleSort {
 
         static std::vector<std::tuple<int,int,int>> SortArray(std::vector<int> arr);
 
+        static void Sort(std::vector<int>& arr, std::vector<std::tuple<int,int,int>>& animation);
+
         static std::vector<int> GetSortedArray(std::vector<int> arr);
 
     private:

@@ -17,7 +17,7 @@ namespace sortsimulator {
         /**
          * Default Constructor for the container of the bar graph.
          */
-        Container();
+        Container(int height, int width, int left_margin, int bottom_margin);
 
         /**
          * Do quicksort animation
@@ -63,11 +63,11 @@ namespace sortsimulator {
         void SpeedDown();
 
     private:
-        const int kHeight = 400;
-        const int kWidth = 600;
-        const int kMarginLeft = 50;
-        const int kMarginBottom = 150;
-        const int kSpacing = 2;
+        int kHeight = 400;
+        int kWidth = 600;
+        int kMarginLeft = 50;
+        int kMarginBottom = 150;
+        int kSpacing = 2;
         /**
          * Array of numbers
          */

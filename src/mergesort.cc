@@ -45,33 +45,43 @@ void MergeSort::Merge(std::vector<int>& arr, const std::vector<int>& aux_arr, in
         animation.emplace_back(std::make_tuple(0,j,k));
         //checking which array head is smaller
         if (aux_arr[j] <= aux_arr[k]) {
+            //animation for color swap
+            animation.emplace_back(std::make_tuple(3,i,j));
+            //swap
             animation.emplace_back(std::make_tuple(2,i,aux_arr[j]));
+            //color switch back to white
+            animation.emplace_back(std::make_tuple(0,i,j));
             arr[i++] = aux_arr[j++];
         } else {
+            //animation for color swap
+            animation.emplace_back(std::make_tuple(3,i,k));
+            //swap
             animation.emplace_back(std::make_tuple(2,i,aux_arr[k]));
+            //color switch back to white
+            animation.emplace_back(std::make_tuple(0,i,k));
             arr[i++] = aux_arr[k++];
         }
     }
     //At this point one of the array is empty
     //emptying out arr1 to merged array
     while(j <= middle_index) {
-        //animation for comparing values
-        animation.emplace_back(std::make_tuple(1,j,middle_index));
-        //color switch back to white
-        animation.emplace_back(std::make_tuple(0,j,middle_index));
+        //animation for color swap
+        animation.emplace_back(std::make_tuple(3,i,j));
         //color for swap
         animation.emplace_back(std::make_tuple(2,i,aux_arr[j]));
+        //color switch back to white
+        animation.emplace_back(std::make_tuple(0,i,j));
         arr[i++] = aux_arr[j++];
     }
 
     //emptying out arr2 to merged array
     while(k <= end_index) {
-        //animation for comparing values
-        animation.emplace_back(std::make_tuple(1,j,end_index));
-        //color switch back to white
-        animation.emplace_back(std::make_tuple(0,j,end_index));
+        //animation for color swap
+        animation.emplace_back(std::make_tuple(3,i,k));
         //color for swap
         animation.emplace_back(std::make_tuple(2,i,aux_arr[k]));
+        //color switch back to white
+        animation.emplace_back(std::make_tuple(0,i,k));
         arr[i++] = aux_arr[k++];
     }
 }

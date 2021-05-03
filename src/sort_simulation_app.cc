@@ -19,7 +19,6 @@ namespace sortsimulator {
         for(int i = 0; i < kNumberOfBars; i++) {
             int a = distribution(mt);
             array.push_back(a);
-            std::cout<<a<<std::endl;
         }
         container_.SetArray(array);
     }
