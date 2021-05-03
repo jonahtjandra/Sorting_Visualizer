@@ -62,12 +62,19 @@ namespace sortsimulator {
 
         void SpeedDown();
 
+        bool GetState() const;
+
+        void SetState(bool state);
+
+        void SetTitle(std::string title);
+
     private:
-        int kHeight = 400;
-        int kWidth = 600;
-        int kMarginLeft = 50;
-        int kMarginBottom = 150;
-        int kSpacing = 2;
+        int height_ = 400;
+        int width_ = 600;
+        int margin_left_ = 50;
+        int margin_bottom_ = 150;
+        int spacing_ = 2;
+        std::string title_;
         /**
          * Array of numbers
          */
@@ -81,6 +88,7 @@ namespace sortsimulator {
         //0=bubble sort, 1=selection sort, 2=quicksort, 3=mergesort
         int sort_method;
         unsigned int kDelay = 0;
+        bool state_;
     };
 
 }  // namespace sortsimulator

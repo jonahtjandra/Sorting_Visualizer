@@ -8,10 +8,10 @@ namespace sortsimulator {
 
     SortSimulationApp::SortSimulationApp() {
         ci::app::setWindowSize(kWindowSize, kWindowSize);
-        GenerateNewArray();
+        container_.SetArray(GenerateNewArray());
     }
 
-    void SortSimulationApp::GenerateNewArray() {
+    std::vector<int> SortSimulationApp::GenerateNewArray() const {
         std::vector<int> array;
         std::random_device rd;
         std::mt19937 mt(rd());
@@ -20,25 +20,50 @@ namespace sortsimulator {
             int a = distribution(mt);
             array.push_back(a);
         }
-        container_.SetArray(array);
+        return array;
     }
 
     void SortSimulationApp::draw() {
         ci::Color background_color("black");
         ci::gl::clear(background_color);
         ci::gl::drawStringCentered("Sorting Algorithm Visualizer",vec2(kWindowSize/2, kTitleTopMargin),ci::Color("white"));
-        if (!sorted_) {
-            ci::gl::drawStringCentered("Generate New Array",vec2(kLeftMargin * 2, kWindowSize - kTitleTopMargin),ci::Color("white"));
-            ci::gl::drawStringCentered("Selection Sort",vec2(kLeftMargin * 5, kWindowSize - kTitleTopMargin),ci::Color("white"));
-            ci::gl::drawStringCentered("Bubble Sort",vec2(kLeftMargin * 7.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
-            ci::gl::drawStringCentered("Quick Sort",vec2(kLeftMargin * 10, kWindowSize - kTitleTopMargin),ci::Color("white"));
-            ci::gl::drawStringCentered("Merge Sort",vec2(kLeftMargin * 12.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
+        if (!simulate_all_) {
+            if (!sorted_) {
+                ci::gl::drawStringCentered("Generate New Array",vec2(kLeftMargin * 2, kWindowSize - kTitleTopMargin),ci::Color("white"));
+                ci::gl::drawStringCentered("Selection Sort",vec2(kLeftMargin * 5, kWindowSize - kTitleTopMargin),ci::Color("white"));
+                ci::gl::drawStringCentered("Bubble Sort",vec2(kLeftMargin * 7.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
+                ci::gl::drawStringCentered("Quick Sort",vec2(kLeftMargin * 10, kWindowSize - kTitleTopMargin),ci::Color("white"));
+                ci::gl::drawStringCentered("Merge Sort",vec2(kLeftMargin * 12.5, kWindowSize - kTitleTopMargin),ci::Color("white"));
+            }
+            container_.Display();
+        } else {
+            for (std::tuple<Container, int>& container : container_list_) {
+                std::get<0>(container).Display();
+            }
+            int count = 0;
+            for (std::tuple<Container, int>& container : container_list_) {
+                if (std::get<0>(container).GetState()) {
+                    count++;
+                }
+            }
+            if (count == container_list_.size()) {
+                std::cout << "simulation finish";
+                simulate_all_ = false;
+                for (std::tuple<Container, int>& container : container_list_) {
+                    std::get<0>(container).SetState(false);
+                }
+            }
         }
-        container_.Display();
     }
 
     void SortSimulationApp::update() {
-        container_.AdvanceOneFrame();
+        if (!simulate_all_) {
+            container_.AdvanceOneFrame();
+        } else {
+            for (std::tuple<Container, int>& container : container_list_) {
+                std::get<0>(container).AdvanceOneFrame();
+            }
+        }
     }
 
     void SortSimulationApp::mouseDown(ci::app::MouseEvent event) {
@@ -48,7 +73,7 @@ namespace sortsimulator {
             if ((float)(kWindowSize - kTitleTopMargin) - 10 < clickPos.y && clickPos.y < (float)kWindowSize - kTitleTopMargin + 10) {
                 if ((float)kLeftMargin * 2 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 2 + kLeftMargin) {
                     std::cout<< "Generate New Array";
-                    GenerateNewArray();
+                    container_.SetArray(GenerateNewArray());
                 }
                 if ((float)kLeftMargin * 5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 5 + kLeftMargin) {
                     std::cout<< "Selection Sort";
@@ -78,6 +103,33 @@ namespace sortsimulator {
         }
         if (event.getChar() == 'w') {
            container_.SpeedUp();
+        }
+        if (event.getChar() == 'c') {
+            simulate_all_ = true;
+            RunAll();
+        }
+    }
+
+    void SortSimulationApp::RunAll() {
+        std::vector<int> array = GenerateNewArray();
+        for (std::tuple<Container, int>& container : container_list_) {
+            std::get<0>(container).SetArray(array);
+            if (std::get<1>(container) == 0) {
+                std::get<0>(container).ParseMergeSort();
+                std::get<0>(container).SetTitle("Merge Sort");
+            }
+            if (std::get<1>(container) == 1) {
+                std::get<0>(container).ParseQuickSort();
+                std::get<0>(container).SetTitle("Parse Sort");
+            }
+            if (std::get<1>(container) == 2) {
+                std::get<0>(container).ParseBubbleSort();
+                std::get<0>(container).SetTitle("Bubble Sort");
+            }
+            if (std::get<1>(container) == 3) {
+                std::get<0>(container).ParseSelectionSort();
+                std::get<0>(container).SetTitle("Selection Sort");
+            }
         }
     }
 

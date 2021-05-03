@@ -17,10 +17,13 @@ namespace sortsimulator {
 
     using glm::vec2;
 
-    Container::Container(int height, int width, int left_margin, int bottom_margin) {
+    Container::Container(int height, int width, int margin_left, int margin_bottom) {
         sorted_ = false;
-        kHeight = height;
-
+        height_ = height;
+        width_ = width;
+        margin_left_ = margin_left;
+        margin_bottom_ = margin_bottom;
+        state_ = false;
     }
 
     void Container::ParseQuickSort() {
@@ -57,17 +60,19 @@ namespace sortsimulator {
     }
 
     void Container::Display() const {
+        ci::gl::drawStringCentered(title_,vec2(((width_ - margin_left_)/2)+margin_left_, margin_bottom_)
+                                   ,ci::Color("white"));
         ci::gl::color(ci::Color("white"));
-        ci::gl::drawStrokedRect(ci::Rectf(vec2(kMarginLeft, kMarginBottom),
-                                          vec2(kMarginLeft + kWidth, kMarginBottom + kHeight)));
-        float bar_width = (float)(kWidth - (array_.size() + 1)*kSpacing)/array_.size();
+        ci::gl::drawStrokedRect(ci::Rectf(vec2(margin_left_, margin_bottom_),
+                                          vec2(margin_left_ + width_, margin_bottom_ + height_)));
+        float bar_width = (float)(width_ - (array_.size() + 1) * spacing_) / array_.size();
         for (int i = 0; i < array_.size(); i++) {
             ci::gl::color(color_array_[i]);
-            ci::gl::drawSolidRect(ci::Rectf(vec2((float)kMarginLeft + kSpacing + (float)i * (bar_width + kSpacing),
-                                                 kMarginBottom + kHeight),
-                                            vec2((float)kMarginLeft + kSpacing + (float)i * (bar_width + kSpacing) + bar_width,
-                                                 (kHeight + kMarginBottom) - (kHeight
-                                                                              / array_.size() * array_[i]))));
+            ci::gl::drawSolidRect(ci::Rectf(vec2((float)margin_left_ + spacing_ + (float)i * (bar_width + spacing_),
+                                                 margin_bottom_ + height_),
+                                            vec2((float)margin_left_ + spacing_ + (float)i * (bar_width + spacing_) + bar_width,
+                                                 (height_ + margin_bottom_) - (height_
+                                                                               / array_.size() * array_[i]))));
         }
     }
 
@@ -120,6 +125,7 @@ namespace sortsimulator {
                 finished_ = false;
                 ResetGraph();
                 count_ = 0;
+                state_ = true;
             }
         }
     }
@@ -151,6 +157,19 @@ namespace sortsimulator {
 
     void Container::SpeedDown() {
         kDelay = 150000;
+    }
+
+    bool Container::GetState() const {
+        return state_;
+    }
+
+    void Container::SetState(bool state) {
+        state_ = state;
+
+    }
+
+    void Container::SetTitle(std::string title) {
+        title_ = std::move(title);
     }
 
 
