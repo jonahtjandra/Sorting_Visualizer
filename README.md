@@ -20,7 +20,7 @@
 ##### Both quick sort and merge sort have similar time complexities with quick sort usually finishing first. This supports the fact that both sorting algorithms are O(n(log(n))
 ##### Both selection sort and bubble sort have poorer performance with bubble sort usually doing the worst. This supports the fact that both sorting algorithm are O(n^2)
 ##### At arrays of higher sizes the difference between these algorithm would follow their big O time complexities more closely.
-##### For pre-sorted array quick sort that is previously the best became the slowest performing algorithm. Merge sort however, stay consistent and produce the best performance
+##### For pre-sorted arrays, quick sort that is previously the best, became the slowest performing algorithm. Merge sort however, stayed consistent and produce the best performance overall
 
 ## Conclusion:
 ##### Merge Sort is the most stable sorting algorithm with the same big O time complexity for best case and worst case scenarios: O(nlog(n))
