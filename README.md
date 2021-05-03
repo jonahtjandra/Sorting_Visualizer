@@ -13,7 +13,7 @@
 #### Key Presses:
 ##### 'w' is for speeding up the simulation
 ##### 's' is for slowing down the simulation
-##### 'c' is used for simulating all algorithms together but using a sorted array. This is done to observe the stability of the sorting algorithms on worst case (a sorted array)
+##### 'c' is used for simulating all algorithms together but using a pre-sorted array. This is done to observe the stability of the sorting algorithms on worst case (a sorted array)
 
 ## Results and findings:
 ##### For pseudo-randomly generated arrays:
