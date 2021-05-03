@@ -8,7 +8,6 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 #include <unistd.h>
 #include <bubblesort.h>
 #include <selectionsort.h>
@@ -54,9 +53,6 @@ namespace sortsimulator {
         sort_method = 1;
         animations_.clear();
         animations_ = SelectionSort::SortArray(array_);
-        for (int i : SelectionSort::GetSortedArray(array_)) {
-            std::cout << i << std::endl;
-        }
     }
 
     void Container::Display() const {

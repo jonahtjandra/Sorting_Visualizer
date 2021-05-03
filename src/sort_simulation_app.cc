@@ -2,6 +2,7 @@
 // Created by Jonah on 19/04/21.
 //
 #include <sort_simulation_app.h>
+#include <mergesort.h>
 #include <random>
 
 namespace sortsimulator {
@@ -11,7 +12,7 @@ namespace sortsimulator {
         container_.SetArray(GenerateNewArray());
     }
 
-    std::vector<int> SortSimulationApp::GenerateNewArray() const {
+    std::vector<int> SortSimulationApp::GenerateNewArray() {
         std::vector<int> array;
         std::random_device rd;
         std::mt19937 mt(rd());
@@ -20,6 +21,7 @@ namespace sortsimulator {
             int a = distribution(mt);
             array.push_back(a);
         }
+        array_ = array;
         return array;
     }
 
@@ -48,7 +50,6 @@ namespace sortsimulator {
                 }
             }
             if (count == container_list_.size()) {
-                std::cout << "simulation finish";
                 simulate_all_ = false;
                 for (std::tuple<Container, int>& container : container_list_) {
                     std::get<0>(container).SetState(false);
@@ -73,30 +74,24 @@ namespace sortsimulator {
         if (!sorted_) {
             if ((float)(kWindowSize - kTitleTopMargin) - 10 < clickPos.y && clickPos.y < (float)kWindowSize - kTitleTopMargin + 10) {
                 if ((float)kLeftMargin * 2 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 2 + kLeftMargin) {
-                    std::cout<< "Generate New Array";
                     container_.SetArray(GenerateNewArray());
                 }
                 if ((float)kLeftMargin * 4.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 4.5 + kLeftMargin) {
-                    std::cout<< "Selection Sort";
                     container_.ParseSelectionSort();
                 }
                 if ((float)kLeftMargin * 6.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 6.5 + kLeftMargin) {
-                    std::cout<< "Bubble Sort";
                     container_.ParseBubbleSort();
                 }
                 if ((float)kLeftMargin * 8.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 8.5 + kLeftMargin) {
                     //quick sort
-                    std::cout<< "Quick Sort";
                     container_.ParseQuickSort();
                 }
                 if ((float)kLeftMargin * 10.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 10.5 + kLeftMargin) {
                     //merge sort
-                    std::cout<< "Merge Sort";
                     container_.ParseMergeSort();
                 }
                 if ((float)kLeftMargin * 12.5 - kLeftMargin < clickPos.x && clickPos.x < (float)kLeftMargin * 12.5 + kLeftMargin) {
                     //simulate simultaneously
-                    std::cout<< "Simulating all";
                     simulate_all_ = true;
                     RunAll();
                 }
@@ -113,14 +108,14 @@ namespace sortsimulator {
         }
         if (event.getChar() == 'c') {
             simulate_all_ = true;
+            array_ = MergeSort::GetSortedArray(array_);
             RunAll();
         }
     }
 
     void SortSimulationApp::RunAll() {
-        std::vector<int> array = GenerateNewArray();
         for (std::tuple<Container, int>& container : container_list_) {
-            std::get<0>(container).SetArray(array);
+            std::get<0>(container).SetArray(array_);
             if (std::get<1>(container) == 0) {
                 std::get<0>(container).ParseMergeSort();
                 std::get<0>(container).SetTitle("Merge Sort");

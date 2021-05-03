@@ -36,7 +36,8 @@ namespace sortsimulator {
          * Private helper method to generate random vector of ints
          * @return vector of integers
          */
-        std::vector<int> GenerateNewArray() const;
+        std::vector<int> GenerateNewArray();
+        std::vector<int> array_;
         // main container for the single container simulation
         Container container_ = Container(400, 600, 50, 150);
         // vector of containers we want to run simultaneously

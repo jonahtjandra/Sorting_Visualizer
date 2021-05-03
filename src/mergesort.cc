@@ -2,7 +2,6 @@
 // Created by Jonah on 19/04/21.
 //
 
-#include <iostream>
 #include "mergesort.h"
 #include <cmath>
 namespace sortsimulator {
