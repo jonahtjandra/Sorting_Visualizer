@@ -1,4 +1,13 @@
 # Sorting Algorithm Visualizer
+# DEMO:
+
+
+
+https://user-images.githubusercontent.com/68806999/127983852-9d247d73-b244-4058-807c-a8582b232002.mov
+
+
+
+
 ## What this app does:
 #### This app visualizes the different sorting algorithm using bars to represent an array of elements that are comparable (in this case comparable with their height). 
 #### This app currently supports the following sorting algorithms: Merge Sort, Quick Sort, Bubble Sort, Selection Sort.
@@ -9,7 +18,7 @@
 
 ## How to use the app:
 <img width="701" alt="Screen Shot 2021-08-03 at 15 18 11" src="https://user-images.githubusercontent.com/68806999/127982778-b66c0bd2-5de1-478f-80a3-0b7fee6193a1.png">
-<img width="699" alt="Screen Shot 2021-08-03 at 15 22 01" src="https://user-images.githubusercontent.com/68806999/127982975-5da76081-b886-47a8-9ab6-c1f1de16f319.png">
+
 
 #### The UI is pretty intuitive with their respective buttons.
 #### To use the extra features you need to utilize certain key presses.
